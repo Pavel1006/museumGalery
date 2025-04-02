@@ -3,13 +3,17 @@ package com.example.metmuseum.ui.search
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,53 +65,67 @@ private fun SearchScreenPrivate(
     onResultClick: (Int) -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit
-
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .padding(WindowInsets.systemBars.asPaddingValues()),
+        verticalArrangement = if (searchResults.isEmpty() && searchText.isEmpty()) Arrangement.Center else Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
+        if (searchText.isEmpty()) {
+            Text(
+                text = "Welcome to MET Gallery Public API",
+                fontSize = 30.sp,
+                lineHeight = 40.sp,
+                color = Color(0xFF722F37),
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+            )
+        }
 
-        Spacer(modifier = Modifier.height(16.dp))
         TextField(
             value = searchText,
             onValueChange = onSearchTextChange,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)  // Add some padding inside the TextField
-                .clip(RoundedCornerShape(50.dp))  // Use a higher value for more oval corners
-                .background(Color(0xFFEFB8C8)), // Lavender background (using Hex color code for lavender)
+                .clip(RoundedCornerShape(50.dp))
+                .background(Color(0xFFEFB8C8)),
             placeholder = { Text(text = "Search", color = Color.White) },
-            textStyle = TextStyle(color = Color.White),  // Set text color to white
-            shape = RoundedCornerShape(50.dp),  // Apply oval shape (rounded corners)
+            textStyle = TextStyle(color = Color.White)
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             items(searchResults.toList()) { id ->
-                Row(
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxWidth(0.8f)
+                        .clip(RoundedCornerShape(1.dp))
+                        .background(Color(0xFF722F37))
+                        .padding(vertical = 12.dp, horizontal = 16.dp)
+                        .clickable { onResultClick(id) },
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = "$id",
                         fontSize = 20.sp,
-                        modifier = Modifier
-                            .weight(1f)
-                            .clickable { onResultClick(id) },
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
-
                 }
+                Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }
 }
-
