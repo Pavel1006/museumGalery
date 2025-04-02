@@ -24,6 +24,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -134,8 +136,21 @@ private fun DetailsScreen(
             Column (
                 modifier = Modifier.verticalScroll(rememberScrollState())
             ){
-                Text(text = "Object Name: ${details.objectName}", fontSize = 22.sp)
-                Text(text = "Title: ${details.title}", fontSize = 22.sp)
+                val detailsTextColor = Color(0xFF722F37)
+                Text(
+                    text = "Object Name: ${details.objectName}",
+                    fontSize = 22.sp,
+                    color = detailsTextColor,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = "Title: ${details.title}",
+                    fontSize = 22.sp,
+                    color = detailsTextColor,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
                 Text(text = "Period: ${details.period}", fontSize = 22.sp)
                 Text(text = "Culture: ${details.culture}", fontSize = 22.sp)
                 Text(text = "Accession Year: ${details.accessionYear}", fontSize = 22.sp)
