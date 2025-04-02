@@ -1,6 +1,5 @@
 package com.example.metmuseum.network
 
-import com.example.metmuseum.network.ArtObject
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

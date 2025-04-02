@@ -2,7 +2,7 @@ package com.example.metmuseum.di
 
 import android.content.Context
 import androidx.room.Room
-//import com.example.metmuseum.ui.details.DetailsViewModel
+import com.example.metmuseum.ui.details.DetailsViewModel
 import com.example.metmuseum.network.MuseumRepository
 import com.example.metmuseum.network.MuseumRepositoryImpl
 import com.example.metmuseum.network.RemoteMuseumDataSourceImpl
@@ -17,7 +17,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     viewModelOf(::SearchViewModel)
-    //viewModelOf(::DetailsViewModel)
+    viewModelOf(::DetailsViewModel)
 
     singleOf(::MuseumRepositoryImpl) bind MuseumRepository::class
     singleOf(::RemoteMuseumDataSourceImpl) bind RemoteMuseumDataSource::class
