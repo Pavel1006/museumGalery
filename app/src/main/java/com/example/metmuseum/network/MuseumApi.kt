@@ -1,8 +1,5 @@
 package com.example.metmuseum.network
 
-
-import com.example.metmuseum.network.ApiObjectDetails
-import com.example.metmuseum.network.ApiArtObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

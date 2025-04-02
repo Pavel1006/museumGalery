@@ -1,12 +1,5 @@
 package com.example.metmuseum.network
 
-import com.example.metmuseum.network.ApiObjectDetails
-import com.example.metmuseum.network.ApiArtObject
-import com.example.metmuseum.network.RemoteMuseumDataSource
-import com.example.metmuseum.network.MuseumApi
-import com.example.metmuseum.network.toArtDetails
-import com.example.metmuseum.network.toArtObject
-
 class RemoteMuseumDataSourceImpl : RemoteMuseumDataSource {
 
     private val api: MuseumApi = museumApi

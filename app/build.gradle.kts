@@ -60,33 +60,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-       /* implementation(libs.retrofit)
-        implementation(libs.converter.moshi)
-
-        // Moshi (pentru serializarea/deserializarea JSON)
-        implementation(libs.moshi)
-        implementation(libs.moshi.kotlin)
-
-        // OkHttp (pentru interceptor)
-        implementation(libs.okhttp)
-        implementation(libs.logging.interceptor)
-
-        // Koin pentru injecție de dependență
-        implementation(libs.koin.android)
-
-        // Coil (pentru a încărca imagini în Jetpack Compose)
-        implementation(libs.coil.compose)
-
-        // Lifecycle pentru ViewModel și LiveData
-        implementation(libs.androidx.lifecycle.viewmodel.compose)
-        implementation(libs.androidx.lifecycle.runtime.ktx.v250)
-
-        // Jetpack Compose
-        implementation(libs.ui)
-        implementation(libs.androidx.material)
-        implementation(libs.ui.tooling.preview)
-        implementation(libs.androidx.navigation.compose)*/
-
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.moshiConverter)
 
@@ -105,11 +78,4 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
-
-    implementation ("androidx.compose.material3:material3:1.3.1")
-    implementation ("androidx.compose.material:material-icons-extended:1.7.8")
-
-
-
-
 }

@@ -15,7 +15,6 @@ import com.example.metmuseum.ui.details.DetailsRoute
 import com.example.metmuseum.ui.search.SearchScreen
 import com.example.metmuseum.ui.theme.METmuseumTheme
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +40,6 @@ class MainActivity : ComponentActivity() {
                     composable<DetailsRoute> {
                         DetailsScreen(onUpClick = { navController.navigateUp() })
                     }
-
                 }
             }
         }

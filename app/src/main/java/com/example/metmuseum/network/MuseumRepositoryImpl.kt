@@ -1,9 +1,5 @@
 package com.example.metmuseum.network
 
-import com.example.metmuseum.network.toArtObject
-import com.example.metmuseum.network.toArtDetails
-
-
 class MuseumRepositoryImpl(private val remoteMuseumDataSource: RemoteMuseumDataSource):
     MuseumRepository {
     override suspend fun getArtObject(query: String): ArtObject {

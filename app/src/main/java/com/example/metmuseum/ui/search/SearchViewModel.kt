@@ -12,15 +12,13 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
-    private val museumRepository : MuseumRepository
-) : ViewModel() {
+    private val museumRepository : MuseumRepository) : ViewModel() {
 
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
 
     private val _searchResults = MutableStateFlow<Array<Int>>(emptyArray())
     val searchResults = _searchResults.asStateFlow()
-
 
     fun onSearchTextChange(text: String){
         _searchText.value = text
