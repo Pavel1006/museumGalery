@@ -15,12 +15,12 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create())
     .build()
 
-interface METApi{
+interface MuseumApi{
     @GET("search")
-    suspend fun getElements(@Query("q") query: String): Response<ApiArtObject>
+    suspend fun getArtObject(@Query("q") query: String): Response<ApiArtObject>
 
     @GET("objects/{objectID}")
-    suspend fun getElemDetails(@Path("objectID") objectId: Int): Response<ApiObjectDetails>
+    suspend fun getArtDetails(@Path("objectID") objectId: Int): Response<ApiObjectDetails>
 }
 
-val metApi = retrofit.create(METApi::class.java)
+val museumApi = retrofit.create(MuseumApi::class.java)

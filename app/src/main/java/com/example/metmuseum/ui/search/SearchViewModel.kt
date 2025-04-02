@@ -1,45 +1,44 @@
 package com.example.metmuseum.ui.search
-package com.example.metmuseum.ui.search
+
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.metmuseum.network.MuseumRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
-    private val museumRepository: MuseumRepository
+    private val museumRepository : MuseumRepository
 ) : ViewModel() {
 
-    private val _artObjects = MutableStateFlow<List<ArtObjectApi>>(emptyList())
-    val artObjects: StateFlow<List<ArtObjectApi>> = _artObjects
+    private val _searchText = MutableStateFlow("")
+    val searchText = _searchText.asStateFlow()
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
+    private val _searchResults = MutableStateFlow<Array<Int>>(emptyArray())
+    val searchResults = _searchResults.asStateFlow()
 
-    private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error
 
-    fun searchArtObjects(query: String) {
-        if (query.isBlank()) return
+    fun onSearchTextChange(text: String){
+        _searchText.value = text
+    }
 
-        _isLoading.value = true
-        _error.value = null
+    init{
+        loadData()
+    }
+
+    private fun loadData() {
 
         viewModelScope.launch {
-            try {
-                val results = museumRepository.searchArtObjects(query)
-                if (results.isNotEmpty()) {
-                    _artObjects.value = results
-                } else {
-                    _error.value = "Nu au fost găsite obiecte de artă pentru acest termen."
+            _searchText
+                .debounce(300)
+                .distinctUntilChanged()
+                .collectLatest { query ->
+                    _searchResults.value = museumRepository.getArtObject(query).objectIDs
                 }
-            } catch (e: Exception) {
-                _error.value = "A apărut o eroare la căutare: ${e.message}"
-            } finally {
-                _isLoading.value = false
-            }
         }
     }
 }

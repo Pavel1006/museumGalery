@@ -10,7 +10,7 @@ data class ApiArtObject(
     @Json(name = "objectIDs") val objectIDs : Array<Int>
 )
 
-fun ApiArtObject.toElement() : ArtObject{
+fun ApiArtObject.toArtObject() : ArtObject{
     return ArtObject(
         objectIDs = objectIDs
     )
