@@ -1,4 +1,4 @@
-package com.example.metmuseum.network
+package com.example.metmuseum.network.api
 
 import retrofit2.Response
 import retrofit2.Retrofit

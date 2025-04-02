@@ -1,6 +1,6 @@
-package com.example.metmuseum.network
+package com.example.metmuseum.network.api
 
-import com.example.metmuseum.network.ArtDetails
+import com.example.metmuseum.models.ArtDetails
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -33,7 +33,7 @@ data class ApiObjectDetails(
     @Json(name = "artistGender") val artistGender: String
 )
 
-fun ApiObjectDetails.toArtDetails() : ArtDetails{
+fun ApiObjectDetails.toArtDetails() : ArtDetails {
     return ArtDetails(
         objectID = objectID,
         isHighlight = isHighlight,

@@ -3,7 +3,7 @@ package com.example.metmuseum.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.metmuseum.network.MuseumRepository
+import com.example.metmuseum.network.repository.MuseumRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -12,7 +12,8 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
-    private val museumRepository : MuseumRepository) : ViewModel() {
+    private val museumRepository : MuseumRepository
+) : ViewModel() {
 
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()

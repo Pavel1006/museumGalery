@@ -1,4 +1,9 @@
-package com.example.metmuseum.network
+package com.example.metmuseum.network.datasource
+
+import com.example.metmuseum.network.api.ApiArtObject
+import com.example.metmuseum.network.api.ApiObjectDetails
+import com.example.metmuseum.network.api.MuseumApi
+import com.example.metmuseum.network.api.museumApi
 
 class RemoteMuseumDataSourceImpl : RemoteMuseumDataSource {
 

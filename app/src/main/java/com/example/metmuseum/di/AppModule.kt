@@ -1,9 +1,9 @@
 package com.example.metmuseum.di
 
-import com.example.metmuseum.network.MuseumRepository
-import com.example.metmuseum.network.MuseumRepositoryImpl
-import com.example.metmuseum.network.RemoteMuseumDataSource
-import com.example.metmuseum.network.RemoteMuseumDataSourceImpl
+import com.example.metmuseum.network.repository.MuseumRepository
+import com.example.metmuseum.network.repository.MuseumRepositoryImpl
+import com.example.metmuseum.network.datasource.RemoteMuseumDataSource
+import com.example.metmuseum.network.datasource.RemoteMuseumDataSourceImpl
 import com.example.metmuseum.ui.details.DetailsViewModel
 import com.example.metmuseum.ui.search.SearchViewModel
 import org.koin.core.module.dsl.singleOf

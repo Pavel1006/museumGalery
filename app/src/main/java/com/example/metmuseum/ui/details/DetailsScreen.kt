@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.example.metmuseum.network.ArtDetails
+import com.example.metmuseum.models.ArtDetails
 import com.example.metmuseum.ui.details.DetailsViewModel
 import org.koin.androidx.compose.koinViewModel
 

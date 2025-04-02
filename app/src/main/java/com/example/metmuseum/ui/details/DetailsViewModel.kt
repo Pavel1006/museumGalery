@@ -4,8 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.example.metmuseum.network.ArtDetails
-import com.example.metmuseum.network.MuseumRepository
+import com.example.metmuseum.models.ArtDetails
+import com.example.metmuseum.network.repository.MuseumRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

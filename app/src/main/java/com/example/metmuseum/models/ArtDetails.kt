@@ -1,4 +1,4 @@
-package com.example.metmuseum.network
+package com.example.metmuseum.models
 
 data class ArtDetails(
 

@@ -1,4 +1,10 @@
-package com.example.metmuseum.network
+package com.example.metmuseum.network.repository
+
+import com.example.metmuseum.models.ArtDetails
+import com.example.metmuseum.models.ArtObject
+import com.example.metmuseum.network.datasource.RemoteMuseumDataSource
+import com.example.metmuseum.network.api.toArtDetails
+import com.example.metmuseum.network.api.toArtObject
 
 class MuseumRepositoryImpl(private val remoteMuseumDataSource: RemoteMuseumDataSource):
     MuseumRepository {
