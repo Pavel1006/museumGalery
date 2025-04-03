@@ -25,7 +25,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -133,44 +137,82 @@ private fun DetailsScreen(
                     }
                 }
             }
-            Column (
-                modifier = Modifier.verticalScroll(rememberScrollState())
-            ){
-                val detailsTextColor = Color(0xFF722F37)
-                Text(
-                    text = "Object Name: ${details.objectName}",
-                    fontSize = 22.sp,
-                    color = detailsTextColor,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    text = "Title: ${details.title}",
-                    fontSize = 22.sp,
-                    color = detailsTextColor,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(text = "Period: ${details.period}", fontSize = 22.sp)
-                Text(text = "Culture: ${details.culture}", fontSize = 22.sp)
-                Text(text = "Accession Year: ${details.accessionYear}", fontSize = 22.sp)
-                Text(text = "Department: ${details.department}", fontSize = 22.sp)
-                Text(text = "Accession Number: ${details.accessionNumber}", fontSize = 22.sp)
-                Text(text = "Is Public Domain: ${details.isPublicDomain}", fontSize = 22.sp)
-                Text(text = "Is Highlight: ${details.isHighlight}", fontSize = 22.sp)
-                Text(text = "Dynasty: ${details.dynasty}", fontSize = 22.sp)
-                Text(text = "Reign: ${details.reign}", fontSize = 22.sp)
-                Text(text = "Portfolio: ${details.portfolio}", fontSize = 22.sp)
-                Text(text = "Artist Role: ${details.artistRole}", fontSize = 22.sp)
-                Text(text = "Artist Prefix: ${details.artistPrefix}", fontSize = 22.sp)
-                Text(text = "Artist Display Name: ${details.artistDisplayName}", fontSize = 22.sp)
-                Text(text = "Artist Display Bio: ${details.artistDisplayBio}", fontSize = 22.sp)
-                Text(text = "Artist Suffix: ${details.artistSuffix}", fontSize = 22.sp)
-                Text(text = "Artist Alpha Sort: ${details.artistAlphaSort}", fontSize = 22.sp)
-                Text(text = "Artist Nationality: ${details.artistNationality}", fontSize = 22.sp)
-                Text(text = "Artist Begin Date: ${details.artistBeginDate}", fontSize = 22.sp)
-                Text(text = "Artist End Date: ${details.artistEndDate}", fontSize = 22.sp)
-                Text(text = "Artist Gender: ${details.artistGender}", fontSize = 22.sp)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val detailsTextColor = Color(0xFF722F37) // Special color for Object Name & Title
+
+                listOf(
+                    "Object Name" to details.objectName,
+                    "Title" to details.title
+                ).filter { it.second.isNotBlank() && it.second != "null" }
+                    .forEach { (label, value) ->
+                        Text(
+                            text = buildAnnotatedString {
+                                withStyle(
+                                    style = SpanStyle(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
+                                    )
+                                ) {
+                                    append("$label: ")
+                                }
+                                withStyle(style = SpanStyle(fontSize = 16.sp)) {
+                                    append(value)
+                                }
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            color = detailsTextColor,
+                            textAlign = TextAlign.Center,
+                            lineHeight = 30.sp
+                        )
+                    }
+
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    listOf(
+                        "Period" to details.period,
+                        "Culture" to details.culture,
+                        "Accession Year" to details.accessionYear,
+                        "Department" to details.department,
+                        "Accession Number" to details.accessionNumber,
+                        "Is Public Domain" to details.isPublicDomain.toString(),
+                        "Is Highlight" to details.isHighlight.toString(),
+                        "Dynasty" to details.dynasty,
+                        "Reign" to details.reign,
+                        "Portfolio" to details.portfolio,
+                        "Artist Role" to details.artistRole,
+                        "Artist Prefix" to details.artistPrefix,
+                        "Artist Display Name" to details.artistDisplayName,
+                        "Artist Display Bio" to details.artistDisplayBio,
+                        "Artist Suffix" to details.artistSuffix,
+                        "Artist Alpha Sort" to details.artistAlphaSort,
+                        "Artist Nationality" to details.artistNationality,
+                        "Artist Begin Date" to details.artistBeginDate,
+                        "Artist End Date" to details.artistEndDate,
+                        "Artist Gender" to details.artistGender
+                    ).filter { it.second.isNotBlank() && it.second != "null" }
+                        .forEach { (label, value) ->
+                            Text(
+                                text = buildAnnotatedString {
+                                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)) {
+                                        append("$label: ")
+                                    }
+                                    withStyle(style = SpanStyle(fontSize = 16.sp)) {
+                                        append(value)
+                                    }
+                                },
+                                textAlign = TextAlign.Start,
+                                lineHeight = 30.sp,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                }
             }
         }
     }
