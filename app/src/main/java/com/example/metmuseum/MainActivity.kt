@@ -25,12 +25,12 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "ElementsRoute",
+                    startDestination = "SearchRoute",
                     enterTransition = { EnterTransition.None },
                     exitTransition = { ExitTransition.None },
                     modifier = Modifier,
                 ) {
-                    composable("ElementsRoute") {
+                    composable("SearchRoute") {
                         SearchScreen(
                             onResultClick = { id ->
                                 navController.navigate(DetailsRoute(id))
