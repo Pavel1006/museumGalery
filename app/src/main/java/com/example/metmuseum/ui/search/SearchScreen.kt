@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -71,7 +72,7 @@ private fun SearchScreenPrivate(
                 text = "Welcome to MET Gallery Public API",
                 fontSize = 30.sp,
                 lineHeight = 40.sp,
-                color = Color(0xFF722F37),
+                color = Color(0xFF2C81AF),
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -102,7 +103,7 @@ private fun SearchScreenPrivate(
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .clip(RoundedCornerShape(1.dp))
-                        .background(Color(0xFF722F37))
+                        .background(Color(0xFF464575))
                         .padding(vertical = 12.dp, horizontal = 16.dp)
                         .clickable { onResultClick(id) },
                     contentAlignment = Alignment.Center
@@ -120,4 +121,17 @@ private fun SearchScreenPrivate(
             }
         }
     }
+}
+@Preview(showBackground = true)
+@Composable
+fun SearchScreenPreview() {
+    val mockResults = arrayOf(101, 202, 303,32432432,432432,4324324,324432,342432,342432)
+    val mockSearchText = "Art"
+
+    SearchScreenPrivate(
+        searchResults = mockResults,
+        onResultClick = {},
+        searchText = mockSearchText,
+        onSearchTextChange = {}
+    )
 }

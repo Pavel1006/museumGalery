@@ -143,7 +143,7 @@ private fun DetailsScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                val detailsTextColor = Color(0xFF722F37) // Special color for Object Name & Title
+                val detailsTextColor = Color(0xFF637593) // Special color for Object Name & Title
 
                 listOf(
                     "Object Name" to details.objectName,
